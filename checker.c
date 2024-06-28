@@ -6,11 +6,11 @@ int isTemperatureOk(float temperature) {
 }
 
 int isSocOk(int soc) {
-    return (soc >= 20 && soc <= 80);
+    return (soc > 20 && soc < 80);
 }
 
 int isChargeRateOk(float chargeRate) {
-    return (chargeRate <= 0.8);
+    return (chargeRate < 0.8);
 }
 
 void printOutOfRange(const char *parameter) {
