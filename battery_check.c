@@ -1,28 +1,53 @@
 #include "battery_check.h"
-#include "battery_warning.h"
-#include <stdio.h>  // For printf
-#include "battery_messages.h"
+#include "messages.h"
+#include <stdio.h>
 
-// Dummy implementations for demonstration
-_Bool isTemperatureInRange(float temp) { return temp >= 0 && temp <= 100; }
-_Bool isSocInRange(float soc) { return soc >= 0 && soc <= 100; }
-_Bool isChargeRateInRange(float rate) { return rate >= 0 && rate <= 1; }
-_Bool isTemperatureLowWarning(float temp) { return temp < 5; }
-_Bool isTemperatureHighWarning(float temp) { return temp > 95; }
-_Bool isSocLowWarning(float soc) { return soc < 5; }
-_Bool isSocHighWarning(float soc) { return soc > 95; }
-_Bool isChargeRateHighWarning(float rate) { return rate > 0.9; }
+// Example tolerance values (in percentage) for warning thresholds
+float warningTolerances[NUM_TOLERANCES] = {5.0, 5.0, 5.0};
 
-int batteryIsOk(float temperature, float soc, float chargeRate) {
-    Check checks[] = {
-        {isTemperatureInRange, temperature, getMessage("TEMP_OUT_OF_RANGE"), ""},
-        {isSocInRange, soc, getMessage("SOC_OUT_OF_RANGE"), ""},
-        {isChargeRateInRange, chargeRate, getMessage("CHARGE_RATE_OUT_OF_RANGE"), ""}
-    };
+// Function to get localized messages (for simplicity, just returning hardcoded messages)
+const char* getMessage(const char* key) {
+    // In a real application, you'd look up translations based on the key and current language
+    if (strcmp(key, "TEMP_OUT_OF_RANGE") == 0) return "Temperature out of range!";
+    if (strcmp(key, "SOC_OUT_OF_RANGE") == 0) return "State of Charge out of range!";
+    if (strcmp(key, "CHARGE_RATE_OUT_OF_RANGE") == 0) return "Charge Rate out of range!";
+    return "";
+}
 
-    if (!checkBatteryParameters(checks, sizeof(checks) / sizeof(checks[0]))) {
-        return 0;
+// Check if the temperature is within range
+bool isTemperatureInRange(float temperature) {
+    return temperature >= 0 && temperature <= 40; // Example range
+}
+
+// Check if the SoC is within range
+bool isSocInRange(float soc) {
+    return soc >= 20 && soc <= 80; // Example range
+}
+
+// Check if the charge rate is within range
+bool isChargeRateInRange(float chargeRate) {
+    return chargeRate >= 0 && chargeRate <= 1; // Example range
+}
+
+// Check all battery parameters and print appropriate messages
+bool checkBatteryParameters(Check checks[], size_t size) {
+    bool allOk = true;
+    for (size_t i = 0; i < size; ++i) {
+        if (!checks[i].check(checks[i].value)) {
+            printf("%s\n", checks[i].errorMessage);
+            allOk = false;
+        }
     }
+    return allOk;
+}
+
+// Main function to check if battery parameters are ok
+bool batteryIsOk(float temperature, float soc, float chargeRate) {
+    Check checks[] = {
+        {isTemperatureInRange, temperature, getMessage("TEMP_OUT_OF_RANGE")},
+        {isSocInRange, soc, getMessage("SOC_OUT_OF_RANGE")},
+        {isChargeRateInRange, chargeRate, getMessage("CHARGE_RATE_OUT_OF_RANGE")}
+    };
 
     Check warnings[] = {
         {isTemperatureLowWarning, temperature, "", getMessage("TEMP_LOW_WARNING")},
@@ -32,17 +57,11 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
         {isChargeRateHighWarning, chargeRate, "", getMessage("CHARGE_RATE_HIGH_WARNING")}
     };
 
-    checkBatteryWarnings(warnings, sizeof(warnings) / sizeof(warnings[0]));
+    // Check if all parameters are within range
+    bool parametersOk = checkBatteryParameters(checks, sizeof(checks) / sizeof(checks[0]));
 
-    return 1;
-}
+    // Check if there are any warnings
+    bool warningsOk = checkBatteryWarnings(warnings, sizeof(warnings) / sizeof(warnings[0]));
 
-int checkBatteryParameters(Check checks[], size_t size) {
-    for (size_t i = 0; i < size; ++i) {
-        if (!checks[i].check(checks[i].value)) {
-            printf("%s", checks[i].errorMessage);
-            return 0;
-        }
-    }
-    return 1;
+    return parametersOk && warningsOk;
 }
