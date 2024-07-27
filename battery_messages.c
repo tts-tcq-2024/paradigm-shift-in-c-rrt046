@@ -1,6 +1,7 @@
 // battery_messages.c
 #include "battery_messages.h"
 
+// Messages for each language
 static const char* errorMessages[LANGUAGE_COUNT][3] = {
     [LANGUAGE_ENGLISH] = {
         "Temperature out of range!\n",
@@ -31,16 +32,15 @@ static const char* warningMessages[LANGUAGE_COUNT][5] = {
     }
 };
 
+// Utility function to check index validity
+static const char* getMessage(const char* messages[], int index, int count) {
+    return (index >= 0 && index < count) ? messages[index] : "Unknown message!\n";
+}
+
 const char* getErrorMessage(Language lang, int index) {
-    if (lang < LANGUAGE_COUNT && index >= 0 && index < 3) {
-        return errorMessages[lang][index];
-    }
-    return "Unknown error message!\n";
+    return getMessage(errorMessages[lang], index, 3);
 }
 
 const char* getWarningMessage(Language lang, int index) {
-    if (lang < LANGUAGE_COUNT && index >= 0 && index < 5) {
-        return warningMessages[lang][index];
-    }
-    return "Unknown warning message!\n";
+    return getMessage(warningMessages[lang], index, 5);
 }
