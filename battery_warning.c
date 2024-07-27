@@ -7,7 +7,7 @@ int isTemperatureLowWarning(float temperature) {
 }
 
 int isTemperatureHighWarning(float temperature) {
-    return (temperature > 41 && temperature <= 45);
+    return (temperature > 41 && temperature < 45);
 }
 
 int isSocLowWarning(float soc) {
@@ -15,7 +15,7 @@ int isSocLowWarning(float soc) {
 }
 
 int isSocHighWarning(float soc) {
-    return (soc > 76 && soc < 80);  // Adjusted: 80 should not be in the warning range
+    return (soc > 76 && soc < 80);
 }
 
 int isChargeRateHighWarning(float chargeRate) {
