@@ -1,59 +1,48 @@
 #include "battery_messages.h"
+#include <string.h>
 
 extern Language currentLanguage;
 
-const char* getTemperatureOutOfRangeMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Temperatur außerhalb des Bereichs!\n";
-    }
-    return "Temperature out of range!\n";
-}
+// Define the structure for storing messages
+typedef struct {
+    Language language;
+    const char* key;
+    const char* message;
+} MessageEntry;
 
-const char* getSocOutOfRangeMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Ladezustand außerhalb des Bereichs!\n";
-    }
-    return "State of Charge out of range!\n";
-}
+// Define the message table
+static const MessageEntry messageTable[] = {
+    {LANG_ENGLISH, "TEMP_OUT_OF_RANGE", "Temperature out of range!\n"},
+    {LANG_GERMAN, "TEMP_OUT_OF_RANGE", "Temperatur außerhalb des Bereichs!\n"},
+    
+    {LANG_ENGLISH, "SOC_OUT_OF_RANGE", "State of Charge out of range!\n"},
+    {LANG_GERMAN, "SOC_OUT_OF_RANGE", "Ladezustand außerhalb des Bereichs!\n"},
+    
+    {LANG_ENGLISH, "CHARGE_RATE_OUT_OF_RANGE", "Charge Rate out of range!\n"},
+    {LANG_GERMAN, "CHARGE_RATE_OUT_OF_RANGE", "Ladegeschwindigkeit außerhalb des Bereichs!\n"},
+    
+    {LANG_ENGLISH, "TEMP_LOW_WARNING", "Warning: Approaching low temperature limit!\n"},
+    {LANG_GERMAN, "TEMP_LOW_WARNING", "Warnung: Nähern sich der niedrigen Temperaturgrenze!\n"},
+    
+    {LANG_ENGLISH, "TEMP_HIGH_WARNING", "Warning: Approaching high temperature limit!\n"},
+    {LANG_GERMAN, "TEMP_HIGH_WARNING", "Warnung: Nähern sich der hohen Temperaturgrenze!\n"},
+    
+    {LANG_ENGLISH, "SOC_LOW_WARNING", "Warning: Approaching low SoC limit!\n"},
+    {LANG_GERMAN, "SOC_LOW_WARNING", "Warnung: Nähern sich der niedrigen SoC-Grenze!\n"},
+    
+    {LANG_ENGLISH, "SOC_HIGH_WARNING", "Warning: Approaching high SoC limit!\n"},
+    {LANG_GERMAN, "SOC_HIGH_WARNING", "Warnung: Nähern sich der hohen SoC-Grenze!\n"},
+    
+    {LANG_ENGLISH, "CHARGE_RATE_HIGH_WARNING", "Warning: Approaching high charge rate limit!\n"},
+    {LANG_GERMAN, "CHARGE_RATE_HIGH_WARNING", "Warnung: Nähern sich der hohen Ladegeschwindigkeitsgrenze!\n"}
+};
 
-const char* getChargeRateOutOfRangeMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Ladegeschwindigkeit außerhalb des Bereichs!\n";
+// Function to get the localized message
+const char* getMessage(const char* key) {
+    for (size_t i = 0; i < sizeof(messageTable) / sizeof(messageTable[0]); ++i) {
+        if (messageTable[i].language == currentLanguage && strcmp(messageTable[i].key, key) == 0) {
+            return messageTable[i].message;
+        }
     }
-    return "Charge Rate out of range!\n";
-}
-
-const char* getTemperatureLowWarningMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Warnung: Nähern sich der niedrigen Temperaturgrenze!\n";
-    }
-    return "Warning: Approaching low temperature limit!\n";
-}
-
-const char* getTemperatureHighWarningMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Warnung: Nähern sich der hohen Temperaturgrenze!\n";
-    }
-    return "Warning: Approaching high temperature limit!\n";
-}
-
-const char* getSocLowWarningMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Warnung: Nähern sich der niedrigen SoC-Grenze!\n";
-    }
-    return "Warning: Approaching low SoC limit!\n";
-}
-
-const char* getSocHighWarningMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Warnung: Nähern sich der hohen SoC-Grenze!\n";
-    }
-    return "Warning: Approaching high SoC limit!\n";
-}
-
-const char* getChargeRateHighWarningMessage() {
-    if (currentLanguage == LANG_GERMAN) {
-        return "Warnung: Nähern sich der hohen Ladegeschwindigkeitsgrenze!\n";
-    }
-    return "Warning: Approaching high charge rate limit!\n";
+    return ""; // Return empty string if message not found
 }
