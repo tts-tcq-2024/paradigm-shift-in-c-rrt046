@@ -49,5 +49,13 @@ int main() {
     assert(batteryIsOk(25, 76, 0.7));   // SoC exactly at high boundary (should not be a warning)
     assert(batteryIsOk(25, 70, 0.76));  // Charge rate just outside high warning range (should be a warning)
 
+    // Edge cases for temperature
+    assert(batteryIsOk(0, 70, 0.7));     // Temperature at low boundary (no warning)
+    assert(batteryIsOk(2.24, 70, 0.7));  // Temperature just inside low warning range (should be a warning)
+    assert(batteryIsOk(2.25, 70, 0.7));  // Temperature exactly at low warning threshold (should be a warning)
+    assert(batteryIsOk(42.76, 70, 0.7)); // Temperature just inside high warning range (should be a warning)
+    assert(batteryIsOk(42.75, 70, 0.7)); // Temperature exactly at high warning threshold (should be a warning)
+    assert(batteryIsOk(45, 70, 0.7));    // Temperature at high boundary (no warning)
+
     return 0;
 }
