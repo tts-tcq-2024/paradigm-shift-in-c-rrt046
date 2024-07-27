@@ -1,14 +1,9 @@
-// battery_warning.h
 #ifndef BATTERY_WARNING_H
 #define BATTERY_WARNING_H
 
-#include "battery_common.h"
+#include <stddef.h>  // For size_t
 
-// Warning functions
-bool isTemperatureLowWarning(float temperature);
-bool isTemperatureHighWarning(float temperature);
-bool isSocLowWarning(float soc);
-bool isSocHighWarning(float soc);
-bool isChargeRateHighWarning(float chargeRate);
+// Function declarations
+void checkBatteryWarnings(Check warnings[], size_t size);
 
 #endif // BATTERY_WARNING_H
