@@ -1,31 +1,33 @@
 // battery_warning.c
-#include <stdio.h>
 #include "battery_warning.h"
 
-int isTemperatureLowWarning(float temperature) {
-    return (temperature >= 0 && temperature < 4);
+// Temperature warning tolerance
+#define TEMP_LOW_WARNING 2.25
+#define TEMP_HIGH_WARNING 42.75
+
+// SoC warning tolerance
+#define SOC_LOW_WARNING 24
+#define SOC_HIGH_WARNING 76
+
+// Charge rate warning tolerance
+#define CHARGE_RATE_HIGH_WARNING 0.76
+
+bool isTemperatureLowWarning(float temperature) {
+    return temperature >= 0 && temperature <= TEMP_LOW_WARNING;
 }
 
-int isTemperatureHighWarning(float temperature) {
-    return (temperature > 41 && temperature < 45);
+bool isTemperatureHighWarning(float temperature) {
+    return temperature >= TEMP_HIGH_WARNING && temperature <= 45;
 }
 
-int isSocLowWarning(float soc) {
-    return (soc >= 20 && soc < 24);
+bool isSocLowWarning(float soc) {
+    return soc >= 20 && soc <= SOC_LOW_WARNING;
 }
 
-int isSocHighWarning(float soc) {
-    return (soc > 76 && soc < 80);
+bool isSocHighWarning(float soc) {
+    return soc >= SOC_HIGH_WARNING && soc <= 80;
 }
 
-int isChargeRateHighWarning(float chargeRate) {
-    return (chargeRate > 0.76 && chargeRate <= 0.8);
-}
-
-void checkBatteryWarnings(Check *warnings, int numWarnings) {
-    for (int i = 0; i < numWarnings; ++i) {
-        if (warnings[i].check(warnings[i].value)) {
-            printMessage(warnings[i].warningMessage);
-        }
-    }
+bool isChargeRateHighWarning(float chargeRate) {
+    return chargeRate >= 0.76 && chargeRate <= 0.8;
 }
