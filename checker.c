@@ -28,7 +28,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate, Language lang) {
 }
 
 int main() {
-    Language lang = LANGUAGE_GERMAN; // Change to LANGUAGE_ENGLISH for English messages
+    Language lang = LANGUAGE_ENGLISH; // Change to LANGUAGE_ENGLISH for English messages
 
     // Normal case
     assert(batteryIsOk(25, 70, 0.7, lang));   // Should pass without warnings or errors
