@@ -5,8 +5,8 @@
 #include "battery_common.h"
 
 // Check functions
-int isTemperatureInRange(float temperature);
-int isSocInRange(float soc);
-int isChargeRateInRange(float chargeRate);
+bool isTemperatureInRange(float temperature);
+bool isSocInRange(float soc);
+bool isChargeRateInRange(float chargeRate);
 
 #endif // BATTERY_CHECK_H
