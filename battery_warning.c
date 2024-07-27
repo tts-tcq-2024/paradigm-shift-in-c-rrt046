@@ -15,7 +15,7 @@ int isSocLowWarning(float soc) {
 }
 
 int isSocHighWarning(float soc) {
-    return (soc > 76 && soc <= 80);
+    return (soc > 76 && soc < 80);  // Adjusted: 80 should not be in the warning range
 }
 
 int isChargeRateHighWarning(float chargeRate) {
