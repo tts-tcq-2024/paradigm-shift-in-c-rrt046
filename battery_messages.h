@@ -1,9 +1,9 @@
 #ifndef BATTERY_MESSAGES_H
 #define BATTERY_MESSAGES_H
 
-#include "battery_common.h"
+#include <stddef.h>  // For size_t
 
-// Define message retrieval functions
+// Function to get messages based on language
 const char* getMessage(const char* key);
 
 #endif // BATTERY_MESSAGES_H
