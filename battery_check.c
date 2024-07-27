@@ -1,4 +1,5 @@
 #include "battery_check.h"
+#include "battery_warning.h"
 #include <stdio.h>  // For printf
 #include "battery_messages.h"
 
@@ -44,12 +45,4 @@ int checkBatteryParameters(Check checks[], size_t size) {
         }
     }
     return 1;
-}
-
-void checkBatteryWarnings(Check warnings[], size_t size) {
-    for (size_t i = 0; i < size; ++i) {
-        if (warnings[i].check(warnings[i].value)) {
-            printf("%s", warnings[i].warningMessage);
-        }
-    }
 }
