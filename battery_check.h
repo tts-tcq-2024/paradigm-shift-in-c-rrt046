@@ -14,6 +14,5 @@ typedef struct {
 // Function declarations
 int batteryIsOk(float temperature, float soc, float chargeRate);
 int checkBatteryParameters(Check checks[], size_t size);
-void checkBatteryWarnings(Check warnings[], size_t size);
 
 #endif // BATTERY_CHECK_H
