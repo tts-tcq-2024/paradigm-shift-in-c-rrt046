@@ -1,26 +1,14 @@
 // battery_check.c
-#include <stdio.h>
-#include "battery_common.h"
+#include "battery_check.h"
 
-void printMessage(const char *message) {
-    printf("%s", message);
+bool isTemperatureInRange(float temperature) {
+    return (temperature >= 0 && temperature <= 45);
 }
 
-int checkBatteryParameters(Check checks[], int numChecks) {
-    for (int i = 0; i < numChecks; ++i) {
-        if (!checks[i].check(checks[i].value)) {
-            printMessage(checks[i].errorMessage);
-            return 0;
-        }
-    }
-    return 1;
+bool isSocInRange(float soc) {
+    return (soc >= 20 && soc <= 80);
 }
 
-int checkBatteryWarnings(Check warnings[], int numWarnings) {
-    for (int i = 0; i < numWarnings; ++i) {
-        if (warnings[i].check(warnings[i].value)) {
-            printMessage(warnings[i].warningMessage);
-        }
-    }
-    return 1;
+bool isChargeRateInRange(float chargeRate) {
+    return (chargeRate <= 0.8);
 }
