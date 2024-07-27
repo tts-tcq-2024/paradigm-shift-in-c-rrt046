@@ -2,6 +2,7 @@
 #define BATTERY_CHECK_H
 
 #include <stddef.h>  // For size_t
+#include "battery_common.h"
 
 // Define the Check structure
 typedef struct {
