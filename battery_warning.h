@@ -1,4 +1,3 @@
-// battery_warning.h
 #ifndef BATTERY_WARNING_H
 #define BATTERY_WARNING_H
 
