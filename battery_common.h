@@ -2,6 +2,8 @@
 #ifndef BATTERY_COMMON_H
 #define BATTERY_COMMON_H
 
+#include <stdbool.h>
+
 typedef int (*CheckFunc)(float);
 
 typedef struct {
