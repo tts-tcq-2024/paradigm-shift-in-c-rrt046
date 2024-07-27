@@ -2,21 +2,20 @@
 #ifndef BATTERY_COMMON_H
 #define BATTERY_COMMON_H
 
-#include <stdbool.h>
-#include <stdio.h>
-#include <string.h>
-#include "battery_messages.h"
-#include "battery_check.h"
-#include "battery_warning.h"
+#include <stdbool.h> 
 
-typedef enum {
-    LANG_ENGLISH,
-    LANG_GERMAN,
-    // Add more languages here
-} Language;
+typedef bool (*CheckFunc)(float); // Change CheckFunc to return bool
 
-extern Language currentLanguage;
+typedef struct {
+    CheckFunc check;
+    float value;
+    const char *errorMessage;
+    const char *warningMessage;
+} Check;
 
+// Function prototypes
 void printMessage(const char *message);
+int checkBatteryParameters(Check checks[], int numChecks);
+int checkBatteryWarnings(Check warnings[], int numWarnings);
 
 #endif // BATTERY_COMMON_H
