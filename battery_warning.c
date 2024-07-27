@@ -29,5 +29,5 @@ bool isSocHighWarning(float soc) {
 }
 
 bool isChargeRateHighWarning(float chargeRate) {
-    return chargeRate >= 0.76 && chargeRate <= 0.8;
+    return chargeRate >= CHARGE_RATE_HIGH_WARNING && chargeRate <= 0.8;
 }
