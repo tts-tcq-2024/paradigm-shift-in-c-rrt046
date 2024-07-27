@@ -5,7 +5,6 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <string.h>
-#include "battery_common.h"
 
 typedef enum {
     LANG_ENGLISH,
