@@ -1,4 +1,4 @@
-#include "battery_check.h"
+#include "battery_common.h"
 #include <assert.h>
 
 int main() {
