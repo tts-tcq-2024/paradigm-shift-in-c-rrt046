@@ -1,7 +1,6 @@
 // battery_check.c
 #include <stdio.h>
-#include "battery_check.h"
-#include "battery_warning.h"
+#include "battery_common.h"
 
 void printMessage(const char *message) {
     printf("%s", message);
