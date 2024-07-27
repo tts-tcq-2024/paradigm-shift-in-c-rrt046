@@ -3,6 +3,7 @@
 #define BATTERY_COMMON_H
 
 #include <stdbool.h>
+#include <stdio.h>
 
 typedef enum {
     LANG_ENGLISH,
