@@ -1,6 +1,5 @@
-#include "battery_warning.h"
-#include "battery_check.h"
 #include <stdio.h>  // For printf
+#include "battery_common.h"
 
 void checkBatteryWarnings(Check warnings[], size_t size) {
     for (size_t i = 0; i < size; ++i) {
