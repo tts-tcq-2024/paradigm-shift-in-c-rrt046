@@ -1,4 +1,5 @@
 #include "battery_check.h"
+#include <stdio.h>  // For printf
 #include "battery_messages.h"
 
 // Dummy implementations for demonstration
@@ -33,4 +34,22 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
     checkBatteryWarnings(warnings, sizeof(warnings) / sizeof(warnings[0]));
 
     return 1;
+}
+
+int checkBatteryParameters(Check checks[], size_t size) {
+    for (size_t i = 0; i < size; ++i) {
+        if (!checks[i].check(checks[i].value)) {
+            printf("%s", checks[i].errorMessage);
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void checkBatteryWarnings(Check warnings[], size_t size) {
+    for (size_t i = 0; i < size; ++i) {
+        if (warnings[i].check(warnings[i].value)) {
+            printf("%s", warnings[i].warningMessage);
+        }
+    }
 }
