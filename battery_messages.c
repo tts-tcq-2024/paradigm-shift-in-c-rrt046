@@ -1,5 +1,6 @@
 #include "battery_messages.h"
 #include <stdio.h>  // For printf (for demo purposes)
+#include <string.h> // For strcmp
 
 // Example message retrieval
 const char* getMessage(const char* key) {
