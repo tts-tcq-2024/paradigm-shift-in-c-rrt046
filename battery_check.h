@@ -1,13 +1,13 @@
 #ifndef BATTERY_CHECK_H
 #define BATTERY_CHECK_H
 
-#include "battery_common.h"
+#include <stddef.h>  // For size_t
 
 // Define the Check structure
 typedef struct {
-    _Bool (*check)(float);  // Function pointer for the check function
-    float value;            // Value to be checked
-    const char* errorMessage; // Error message for out-of-range conditions
+    _Bool (*check)(float);      // Function pointer for the check function
+    float value;                // Value to be checked
+    const char* errorMessage;   // Error message for out-of-range conditions
     const char* warningMessage; // Warning message for approaching limits
 } Check;
 
