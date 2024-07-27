@@ -1,6 +1,15 @@
-// battery_check.c
 #include "battery_check.h"
 #include "battery_messages.h"
+
+// Dummy implementations for demonstration
+_Bool isTemperatureInRange(float temp) { return temp >= 0 && temp <= 100; }
+_Bool isSocInRange(float soc) { return soc >= 0 && soc <= 100; }
+_Bool isChargeRateInRange(float rate) { return rate >= 0 && rate <= 1; }
+_Bool isTemperatureLowWarning(float temp) { return temp < 5; }
+_Bool isTemperatureHighWarning(float temp) { return temp > 95; }
+_Bool isSocLowWarning(float soc) { return soc < 5; }
+_Bool isSocHighWarning(float soc) { return soc > 95; }
+_Bool isChargeRateHighWarning(float rate) { return rate > 0.9; }
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
     Check checks[] = {
