@@ -27,7 +27,10 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
 }
 
 int main() {
+    // Normal case
     assert(batteryIsOk(25, 70, 0.7));   // Should pass without warnings or errors
+
+    // Error cases
     assert(!batteryIsOk(50, 85, 0));     // Temperature and SoC out of range
     assert(!batteryIsOk(30, 85, 0));     // SoC out of range
     assert(!batteryIsOk(25, 70, 0.9));   // Charge rate out of range
@@ -43,7 +46,7 @@ int main() {
     assert(batteryIsOk(4, 70, 0.7));    // Temperature just outside low warning range (should be a warning now)
     assert(batteryIsOk(41, 70, 0.7));   // Temperature just outside high warning range (should be a warning now)
     assert(batteryIsOk(20, 24, 0.7));   // SoC just outside low warning range (should be a warning now)
-    assert(batteryIsOk(25, 76, 0.7));  // SoC exactly at high boundary (should not be a warning)
+    assert(batteryIsOk(25, 76, 0.7));   // SoC exactly at high boundary (should not be a warning)
     assert(batteryIsOk(25, 70, 0.76));  // Charge rate just outside high warning range (should be a warning)
 
     return 0;
