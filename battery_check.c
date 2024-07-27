@@ -1,7 +1,4 @@
-#include "battery_check.h"
-#include "battery_warning.h"
 #include <stdio.h>  // For printf
-#include "battery_messages.h"
 
 // Dummy implementations for demonstration
 _Bool isTemperatureInRange(float temp) { return temp >= 0 && temp <= 100; }
