@@ -2,16 +2,11 @@
 #ifndef BATTERY_CHECK_H
 #define BATTERY_CHECK_H
 
-typedef int (*CheckFunc)(float);
+#include "battery_common.h"
 
-typedef struct {
-    CheckFunc check;
-    float value;
-    const char *errorMessage;
-    const char *warningMessage;
-} Check;
-
-int checkBatteryParameters(Check checks[], int numChecks);
-int checkBatteryWarnings(Check warnings[], int numWarnings);
+// Check functions
+int isTemperatureInRange(float temperature);
+int isSocInRange(float soc);
+int isChargeRateInRange(float chargeRate);
 
 #endif // BATTERY_CHECK_H
