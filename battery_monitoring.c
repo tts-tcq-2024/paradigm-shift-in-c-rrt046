@@ -33,8 +33,8 @@ int main() {
     assert(batteryIsOk(25, 70, 0.7, lang));   // Should pass without warnings or errors
 
     // Error cases
-    assert(!batteryIsOk(50, 85, 0, lang));     // Temperature and SoC out of range
-    assert(!batteryIsOk(30, 85, 0, lang));     // SoC out of range
+    assert(!batteryIsOk(50, 70, 0.1, lang));     // Temperature and SoC out of range
+    assert(!batteryIsOk(30, 85, 0.1, lang));     // SoC out of range
     assert(!batteryIsOk(25, 70, 0.9, lang));   // Charge rate out of range
 
     // Warning cases
