@@ -1,7 +1,6 @@
-// battery_messages.c
 #include "battery_messages.h"
 
-Language currentLanguage = LANGUAGE_ENGLISH;
+static Language currentLanguage = LANGUAGE_ENGLISH;
 
 void setLanguage(Language lang) {
     if (lang < LANGUAGE_COUNT) {
