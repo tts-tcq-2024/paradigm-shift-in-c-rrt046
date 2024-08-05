@@ -49,3 +49,4 @@ int main() {
     assert(batteryIsOk(2.24, 70, 0.7));    // Temperature just outside low warning range (should be a warning now)
     assert(batteryIsOk(42.75, 70, 0.7));   // Temperature just outside high warning range (should be a warning now)
     assert(batteryIsOk(20, 24, 0.7));   // SoC just outside low warning range (should be a warning
+}
