@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "battery_check.h"
 #include "battery_warning.h"
+#include "battery_messages.h"
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
     Check checks[] = {
