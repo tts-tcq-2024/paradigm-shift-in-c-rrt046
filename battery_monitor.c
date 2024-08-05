@@ -48,9 +48,4 @@ int main() {
     // Edge cases
     assert(batteryIsOk(2.24, 70, 0.7));    // Temperature just outside low warning range (should be a warning now)
     assert(batteryIsOk(42.75, 70, 0.7));   // Temperature just outside high warning range (should be a warning now)
-    assert(batteryIsOk(20, 24, 0.7));   // SoC just outside low warning range (should be a warning now)
-    assert(batteryIsOk(25, 76, 0.7));   // SoC exactly at high boundary (should not be a warning)
-    assert(batteryIsOk(25, 70, 0.77));  // Charge rate just outside high warning range (should be a warning)
-
-    return 0;
-}
+    assert(batteryIsOk(20, 24, 0.7));   // SoC just outside low warning range (should be a warning
