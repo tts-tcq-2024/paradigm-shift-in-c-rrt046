@@ -1,4 +1,3 @@
-// battery_common.c
 #include "battery_common.h"
 #include <stdio.h>
 
