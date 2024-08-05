@@ -9,6 +9,11 @@ typedef enum {
     LANGUAGE_COUNT
 } Language;
 
+extern Language currentLanguage;
+
+void setLanguage(Language lang);
+Language getLanguage(void);
+
 const char* getErrorMessage(Language lang, int index);
 const char* getWarningMessage(Language lang, int index);
 
