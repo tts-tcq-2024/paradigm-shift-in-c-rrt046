@@ -1,4 +1,3 @@
-// battery_messages.h
 #ifndef BATTERY_MESSAGES_H
 #define BATTERY_MESSAGES_H
 
@@ -8,8 +7,6 @@ typedef enum {
     // Add other languages here
     LANGUAGE_COUNT
 } Language;
-
-extern Language currentLanguage;
 
 void setLanguage(Language lang);
 Language getLanguage(void);
