@@ -13,7 +13,7 @@ Language getLanguage(void) {
 }
 
 // Messages for each language
-static const char* errorMessages[LANGUAGE_COUNT][3] = {
+const char* errorMessages[LANGUAGE_COUNT][3] = {
     [LANGUAGE_ENGLISH] = {
         "Temperature out of range!\n",
         "State of Charge out of range!\n",
@@ -26,7 +26,7 @@ static const char* errorMessages[LANGUAGE_COUNT][3] = {
     }
 };
 
-static const char* warningMessages[LANGUAGE_COUNT][5] = {
+const char* warningMessages[LANGUAGE_COUNT][5] = {
     [LANGUAGE_ENGLISH] = {
         "Warning: Approaching low temperature limit!\n",
         "Warning: Approaching high temperature limit!\n",
