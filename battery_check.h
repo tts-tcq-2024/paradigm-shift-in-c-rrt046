@@ -1,12 +1,10 @@
-// battery_check.h
 #ifndef BATTERY_CHECK_H
 #define BATTERY_CHECK_H
 
-#include "battery_common.h"
-
-// Check functions
-bool isTemperatureInRange(float temperature);
-bool isSocInRange(float soc);
-bool isChargeRateInRange(float chargeRate);
+// Function prototypes
+int isTemperatureOk(float temperature);
+int isSocOk(float soc);
+int isChargeRateOk(float chargeRate);
+int batteryIsOk(float temperature, float soc, float chargeRate);
 
 #endif // BATTERY_CHECK_H
